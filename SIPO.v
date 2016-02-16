@@ -1,8 +1,8 @@
-module SIPO(clk, reset, data); // Serial In -> Parallel Out (8 bits)
+module SIPO(clk, reset, data_in, data_out); // Serial In -> Parallel Out (8 bits)
 
 	input clk, reset;
 	input data_in;
-	output reg [7:0] data_out;
+	output [7:0] data_out;
 
 	reg [7:0] Q;
 	reg [2:0] count;
