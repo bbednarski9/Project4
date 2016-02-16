@@ -1,12 +1,12 @@
-module SIPO(clk, reset, data_in, data_out); // Serial In -> Parallel Out (8 bits)
+module SIPO(data_out, clk, reset, data_in); // Serial In -> Parallel Out (8 bits)
 
-	input clk, reset;
-	input data_in;
-	output [7:0] data_out;
+	input 			clk, reset;
+	input 			data_in;
+	output [7:0] 	data_out;
 
-	reg [7:0] Q;
-	reg [2:0] count;
-	reg load;
+	reg [7:0] 		Q;
+	reg [2:0] 		count;
+	reg 			load;
 
 	always @(posedge clk or posedge reset) begin
 		if (reset) begin
