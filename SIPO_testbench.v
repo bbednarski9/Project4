@@ -3,7 +3,7 @@
 module SIPO_testbench;
 	// connect the two modules
 	wire 		clk, reset, data_in;
-	wire [7:0] 	data_out;
+	wire [9:0] 	data_out;
 	
 	// declare an instance of the module
 	SIPO SIPO_test(data_out, clk, reset, data_in);
@@ -25,11 +25,11 @@ module SIPO_testbench;
 endmodule
 
 module Tester (data_out, clk, reset, data_in);
-	input 	data_out;
+	input 	[9:0] data_out;
 	output 	clk, reset, data_in;
 	reg 	clk, reset, data_in;
 	
-	parameter stimDelay = 20;
+	parameter stimDelay = 10;
 	
 	initial begin 
 		$display("\t\t clk reset data_in \t data_out \t Time");
@@ -39,37 +39,24 @@ module Tester (data_out, clk, reset, data_in);
 	always #stimDelay clk = ~clk;
 	
 	initial begin // Stimulus 
-		#(2*stimDelay) clk = 1'b0; reset = 1'b0;
-		#(2*stimDelay);
-		#(2*stimDelay) reset = 1'b1;				// reset the system
-		#(2*stimDelay);
+		#(2*stimDelay) clk = 1'b0; reset = 1'b0; data_in = 1'b1;
+		#(2*stimDelay) reset = 1'b1;	// reset the system
 		#(2*stimDelay) reset = 1'b0;
-		#(2*stimDelay);
 		#(2*stimDelay) data_in = 1'b1;
 		#(2*stimDelay) data_in = 1'b0;
-		#(2*stimDelay);
 		#(2*stimDelay) data_in = 1'b1;
-		#(2*stimDelay);
 		#(2*stimDelay) data_in = 1'b1;
-		#(2*stimDelay);
-		#(2*stimDelay) data_in = 1'b1;
-		#(2*stimDelay);
-		#(2*stimDelay);
-		#(2*stimDelay) data_in = 1'b0;
-		#(2*stimDelay) data_in = 1'b1;
-		#(2*stimDelay);
-		#(2*stimDelay) data_in = 1'b0;
-		#(2*stimDelay) data_in = 1'b0;
-		#(2*stimDelay);
-		#(2*stimDelay);
 		#(2*stimDelay) data_in = 1'b1;
 		#(2*stimDelay) data_in = 1'b0;
-		#(2*stimDelay);
-		#(2*stimDelay);
+		#(2*stimDelay) data_in = 1'b1;
+		#(2*stimDelay) data_in = 1'b0;
+		#(2*stimDelay) data_in = 1'b0;
+		#(2*stimDelay) data_in = 1'b1;
+		#(2*stimDelay) data_in = 1'b0;
 		#(2*stimDelay) data_in = 1'b1;
 
-		#(60*stimDelay); // needed to see END of simulation
-		$finish; // finish simulation
+		//#(5*stimDelay); 				// needed to see END of simulation
+		$finish; 						// finish simulation
 	end
-	
+
 endmodule

@@ -2,15 +2,15 @@ module SIPO(data_out, clk, reset, data_in); // Serial In -> Parallel Out (8 bits
 
 	input 			clk, reset;
 	input 			data_in;
-	output [7:0] 	data_out;
+	output [9:0] 	data_out;
 
-	reg [7:0] 		Q;
+	reg [9:0] 		Q;
 	reg [2:0] 		count;
 	reg 			load;
 
 	always @(posedge clk or posedge reset) begin
 		if (reset) begin
-			Q_out <= 8'b00000000;
+			Q <= 10'b0000000000;
 			count <= 3'b000;
 		end
 		else begin
@@ -29,6 +29,8 @@ module SIPO(data_out, clk, reset, data_in); // Serial In -> Parallel Out (8 bits
 				Q[5] <= Q[4];
 				Q[6] <= Q[5];
 				Q[7] <= Q[6];
+				Q[8] <= Q[7];
+				Q[9] <= Q[8];
 			end
 		end
 
