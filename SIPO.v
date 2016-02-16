@@ -1,4 +1,4 @@
-module SIPO(data_out, clk, reset, data_in); // Serial In -> Parallel Out (8 bits)
+module SIPO(data_out, clk, reset, data_in); // Serial In -> Parallel Out (10 bits)
 
 	input 			clk, reset;
 	input 			data_in;
