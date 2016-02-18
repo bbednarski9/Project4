@@ -1,3 +1,15 @@
+/*	Joanna Mazer
+	EE 371 Peckol Winter 2016
+	Project 3: Extending a Microprocessor
+	SIPO.v
+	
+	This verilog module functions as a serial in, parallel out
+	shift register. As individual data bits are entered into 
+	the system, the 10 bit output will shift once to the left
+	accordingly.
+*/
+
+
 module SIPO(data_out, clk, reset, data_in); // Serial In -> Parallel Out (10 bits)
 
 	input 			clk, reset;

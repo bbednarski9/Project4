@@ -1,3 +1,13 @@
+/*	Joanna Mazer
+	EE 371 Peckol Winter 2016
+	Project 3: Extending a Microprocessor
+	PISO_testbench.v
+	
+	These modules function as the testbench to the PISO.v file.
+	A truth table will be generated, as well as a gtkwave output
+	waveform.
+*/
+
 `include "PISO.v"
 
 module PISO_testbench;
