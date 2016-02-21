@@ -8,10 +8,10 @@ This verilog module determines when to enable the Bit Sample Counter and
 Bit Indentification Counters for the Serial In Parallel Out Modules
 */
 
-module startBit(enable, clk, reset, bitStream, BIC);
+module startBit(enable, clk, reset, bitStream, BIC, BSC);
 	output	reg	enable;
 	input  		clk, reset, bitStream;
-	input [3:0]	BIC;
+	input [3:0]	BIC, BSC;
 	reg 		ns;
 	
 	// State encoding
@@ -23,7 +23,8 @@ module startBit(enable, clk, reset, bitStream, BIC);
 						ns = ENABLE;
 					else
 						ns = DISABLE;
-			ENABLE: if ((BIC == 4'b1001) && bitStream == 1) // Need to be halfway through 9th bit (stop bit)
+			ENABLE: if ((BIC == 4'b1001) && (BSC == 4'b1111) && bitStream == 1) 
+					// Will turn the enable off when at the end of the last bit in sequence
 						ns = DISABLE;
 					else
 						ns = ENABLE;

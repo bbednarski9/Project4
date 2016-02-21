@@ -13,13 +13,13 @@ module testBench;
 	// Connect the two modules
 	wire	enable;
 	wire	clk, reset, bitStream;
-	wire	[3:0] BIC;
+	wire	[3:0] BIC, BSC;
 	
 	// declare an instance of the startBit module
-	startBit	sb(enable, clk, reset, bitStream, BIC);
+	startBit	sb(enable, clk, reset, bitStream, BIC, BSC);
 	
 	// declare an instance of the Tester Module
-	Tester myTester(enable, clk, reset, bitStream, BIC);
+	Tester myTester(enable, clk, reset, bitStream, BIC, BSC);
 	
 	// file specifications for gtkwave
 	initial
@@ -32,19 +32,19 @@ module testBench;
 	end
 endmodule
 
-module Tester (enable, clk, reset, bitStream, BIC);
+module Tester (enable, clk, reset, bitStream, BIC, BSC);
 	input		enable;
 	output 		clk, reset, bitStream;
-	output  	[3:0]  BIC;
+	output  	[3:0]  BIC, BSC;
 	reg			clk, reset, bitStream;
-	reg 		[3:0]  BIC;
+	reg 		[3:0]  BIC, BSC;
 
 	parameter stimDelay = 20;
 	
 	initial
 	begin
-	$display("\t\t enable \t clk reset bitStream BIC \t Time ");
-	$monitor("\t\t %b \t %b \t %b \t %b \t %b", enable, clk, reset, bitStream, BIC, $time );
+	$display("\t\t enable \t clk reset bitStream BIC BSC \t Time ");
+	$monitor("\t\t %b \t %b \t %b \t %b \t %b", enable, clk, reset, bitStream, BIC, BSC, $time );
 	end
 
 	always
@@ -53,7 +53,7 @@ module Tester (enable, clk, reset, bitStream, BIC);
 	initial // Stimulus
 	begin 
 	#stimDelay clk = 1'b1; bitStream = 1;
-	#stimDelay reset = 0; BIC = 4'b0000;
+	#stimDelay reset = 0; BIC = 4'b0000; BSC = 4'b0000;
 	#stimDelay reset = 1;
 	#stimDelay reset = 0;
 	#(stimDelay * 5);
@@ -61,10 +61,10 @@ module Tester (enable, clk, reset, bitStream, BIC);
 	#(stimDelay * 5);
 	#stimDelay bitStream = 1;
 	#(stimDelay * 5);
-	#stimDelay BIC = 4'b1001;
-	#stimDelay
+	#stimDelay BIC = 4'b1001; BSC = 4'b1111;
+	#stimDelay;
+	#stimDelay;
 	#stimDelay BIC = 4'b0000;
-
 	
 	#(60*stimDelay); // needed to see END of simulation
 	$finish; // finish simulation

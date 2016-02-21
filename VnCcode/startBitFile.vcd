@@ -1,5 +1,5 @@
 $date
-	Wed Feb 17 23:17:02 2016
+	Sat Feb 20 14:32:13 2016
 $end
 $version
 	Icarus Verilog
@@ -12,11 +12,13 @@ $var wire 1 ! reset $end
 $var wire 1 " enable $end
 $var wire 1 # clk $end
 $var wire 1 $ bitStream $end
-$var wire 4 % BIC [3:0] $end
+$var wire 4 % BSC [3:0] $end
+$var wire 4 & BIC [3:0] $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
+bx &
 bx %
 x$
 x#
@@ -28,6 +30,7 @@ $end
 1#
 #40
 b0 %
+b0 &
 0!
 0#
 #60
@@ -76,15 +79,16 @@ b0 %
 1#
 #440
 0#
-b1001 %
+b1111 %
+b1001 &
 #460
 0"
 1#
 #480
 0#
-b0 %
 #500
 1#
+b0 &
 #520
 0#
 #540
@@ -203,3 +207,5 @@ b0 %
 1#
 #1680
 0#
+#1700
+1#

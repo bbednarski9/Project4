@@ -6,7 +6,17 @@
 :vpi_module "vhdl_sys";
 :vpi_module "v2005_math";
 :vpi_module "va_math";
-S_011935f8 .scope module, "characterBitCount" "characterBitCount" 2 11;
+S_0102c260 .scope module, "characterBitCountTop" "characterBitCountTop" 2 13;
+ .timescale 0 0;
+v0277fbe8_0 .net "BIC", 3 0, v0102d170_0;  1 drivers
+v02780218_0 .net "BSC", 3 0, v0102d1c8_0;  1 drivers
+v0277fea8_0 .net "SRclk", 0 0, v0102d220_0;  1 drivers
+v0277fb38_0 .net "bitStream", 0 0, v027729f8_0;  1 drivers
+v0277ffb0_0 .net "charReceived", 0 0, v0102d2d0_0;  1 drivers
+v0277fc40_0 .net "clk", 0 0, v02772aa8_0;  1 drivers
+v0277fb90_0 .net "enable", 0 0, v02780110_0;  1 drivers
+v0277fe50_0 .net "reset", 0 0, v027801c0_0;  1 drivers
+S_0102c330 .scope module, "cbc" "characterBitCount" 2 20, 3 11 0, S_0102c260;
  .timescale 0 0;
     .port_info 0 /OUTPUT 1 "charReceived"
     .port_info 1 /OUTPUT 1 "SRclk"
@@ -16,78 +26,174 @@ S_011935f8 .scope module, "characterBitCount" "characterBitCount" 2 11;
     .port_info 5 /INPUT 1 "reset"
     .port_info 6 /INPUT 1 "bitStream"
     .port_info 7 /INPUT 1 "enable"
-v02763bf0_0 .net "BIC", 3 0, L_0119ef30;  1 drivers
-v011936c8_0 .net "BSC", 3 0, L_0119ef88;  1 drivers
-v01193720_0 .var "SRclk", 0 0;
-o0276401c .functor BUFZ 1, C4<z>; HiZ drive
-v01193778_0 .net "bitStream", 0 0, o0276401c;  0 drivers
-v0119ed78_0 .var "charReceived", 0 0;
-o0276404c .functor BUFZ 1, C4<z>; HiZ drive
-v0119edd0_0 .net "clk", 0 0, o0276404c;  0 drivers
-v0119ee28_0 .var "combinedCounter", 7 0;
-o0276407c .functor BUFZ 1, C4<z>; HiZ drive
-v0119ee80_0 .net "enable", 0 0, o0276407c;  0 drivers
-o02764094 .functor BUFZ 1, C4<z>; HiZ drive
-v0119eed8_0 .net "reset", 0 0, o02764094;  0 drivers
-E_01198910 .event posedge, v0119edd0_0;
-L_0119ef30 .part v0119ee28_0, 4, 4;
-L_0119ef88 .part v0119ee28_0, 0, 4;
-    .scope S_011935f8;
+v0102d170_0 .var "BIC", 3 0;
+v0102d1c8_0 .var "BSC", 3 0;
+v0102d220_0 .var "SRclk", 0 0;
+v0102d278_0 .net "bitStream", 0 0, v027729f8_0;  alias, 1 drivers
+v0102d2d0_0 .var "charReceived", 0 0;
+v010235f8_0 .net "clk", 0 0, v02772aa8_0;  alias, 1 drivers
+v01023650_0 .var "combinedCounter", 7 0;
+v010236a8_0 .net "enable", 0 0, v02780110_0;  alias, 1 drivers
+v01023700_0 .net "reset", 0 0, v027801c0_0;  alias, 1 drivers
+E_01029418 .event posedge, v010235f8_0;
+S_02772820 .scope module, "myTester" "Tester" 2 23, 2 38 0, S_0102c260;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "charReceived"
+    .port_info 1 /INPUT 1 "SRclk"
+    .port_info 2 /INPUT 4 "BIC"
+    .port_info 3 /INPUT 4 "BSC"
+    .port_info 4 /OUTPUT 1 "clk"
+    .port_info 5 /OUTPUT 1 "reset"
+    .port_info 6 /OUTPUT 1 "bitStream"
+    .port_info 7 /OUTPUT 1 "enable"
+P_010293f0 .param/l "delay" 0 2 44, +C4<00000000000000000000000000010100>;
+v027728f0_0 .net "BIC", 3 0, v0102d170_0;  alias, 1 drivers
+v02772948_0 .net "BSC", 3 0, v0102d1c8_0;  alias, 1 drivers
+v027729a0_0 .net "SRclk", 0 0, v0102d220_0;  alias, 1 drivers
+v027729f8_0 .var "bitStream", 0 0;
+v02772a50_0 .net "charReceived", 0 0, v0102d2d0_0;  alias, 1 drivers
+v02772aa8_0 .var "clk", 0 0;
+v02780110_0 .var "enable", 0 0;
+v027801c0_0 .var "reset", 0 0;
+    .scope S_0102c330;
 T_0 ;
-    %wait E_01198910;
-    %load/vec4 v0119eed8_0;
-    %flag_set/vec4 8;
-    %jmp/0xz  T_0.0, 8;
-    %pushi/vec4 0, 0, 1;
-    %store/vec4 v0119ed78_0, 0, 1;
-    %pushi/vec4 0, 0, 1;
-    %store/vec4 v01193720_0, 0, 1;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0102d170_0, 0, 4;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0102d1c8_0, 0, 4;
     %pushi/vec4 0, 0, 8;
-    %store/vec4 v0119ee28_0, 0, 8;
-    %jmp T_0.1;
-T_0.0 ;
-    %load/vec4 v0119ee80_0;
-    %flag_set/vec4 8;
-    %jmp/0xz  T_0.2, 8;
+    %store/vec4 v01023650_0, 0, 8;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0119ed78_0, 0, 1;
-    %load/vec4 v0119ee28_0;
-    %addi 1, 0, 8;
-    %store/vec4 v0119ee28_0, 0, 8;
-    %pushi/vec4 8, 0, 4;
-    %cmpi/e 8, 0, 4;
-    %jmp/0xz  T_0.4, 4;
-    %pushi/vec4 1, 0, 1;
-    %store/vec4 v01193720_0, 0, 1;
-    %jmp T_0.5;
-T_0.4 ;
+    %store/vec4 v0102d2d0_0, 0, 1;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v01193720_0, 0, 1;
-T_0.5 ;
-    %jmp T_0.3;
-T_0.2 ;
-    %pushi/vec4 0, 0, 1;
-    %store/vec4 v01193720_0, 0, 1;
-    %pushi/vec4 9, 0, 4;
-    %cmpi/e 9, 0, 4;
-    %jmp/0xz  T_0.6, 4;
-    %pushi/vec4 0, 0, 8;
-    %store/vec4 v0119ee28_0, 0, 8;
-    %pushi/vec4 1, 0, 1;
-    %store/vec4 v0119ed78_0, 0, 1;
-    %jmp T_0.7;
-T_0.6 ;
-    %pushi/vec4 0, 0, 1;
-    %store/vec4 v0119ed78_0, 0, 1;
-    %load/vec4 v0119ee28_0;
-    %store/vec4 v0119ee28_0, 0, 8;
-T_0.7 ;
-T_0.3 ;
-T_0.1 ;
-    %jmp T_0;
+    %store/vec4 v0102d220_0, 0, 1;
+    %end;
     .thread T_0;
+    .scope S_0102c330;
+T_1 ;
+    %wait E_01029418;
+    %load/vec4 v01023650_0;
+    %parti/s 4, 4, 4;
+    %store/vec4 v0102d170_0, 0, 4;
+    %load/vec4 v01023650_0;
+    %parti/s 4, 0, 2;
+    %store/vec4 v0102d1c8_0, 0, 4;
+    %load/vec4 v01023700_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0102d2d0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0102d220_0, 0, 1;
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v01023650_0, 0, 8;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/vec4 v010236a8_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.2, 8;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0102d2d0_0, 0, 1;
+    %load/vec4 v01023650_0;
+    %parti/s 4, 0, 2;
+    %cmpi/e 7, 0, 4;
+    %jmp/0xz  T_1.4, 4;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0102d220_0, 0, 1;
+    %jmp T_1.5;
+T_1.4 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0102d220_0, 0, 1;
+T_1.5 ;
+    %load/vec4 v01023650_0;
+    %parti/s 4, 4, 4;
+    %pushi/vec4 9, 0, 4;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %load/vec4 v01023650_0;
+    %parti/s 4, 0, 2;
+    %pushi/vec4 15, 0, 4;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %and;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.6, 8;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0102d2d0_0, 0, 1;
+T_1.6 ;
+    %load/vec4 v01023650_0;
+    %addi 1, 0, 8;
+    %store/vec4 v01023650_0, 0, 8;
+    %jmp T_1.3;
+T_1.2 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0102d220_0, 0, 1;
+    %load/vec4 v01023650_0;
+    %parti/s 4, 4, 4;
+    %cmpi/e 9, 0, 4;
+    %jmp/0xz  T_1.8, 4;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0102d2d0_0, 0, 1;
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v01023650_0, 0, 8;
+    %jmp T_1.9;
+T_1.8 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0102d2d0_0, 0, 1;
+T_1.9 ;
+T_1.3 ;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_02772820;
+T_2 ;
+    %vpi_call 2 47 "$display", "\011\011 charReceived SRclk BIC BSC clk reset bitStream enable Time" {0 0 0};
+    %vpi_call 2 48 "$monitor", "\011\011 %b \011 %b \011 %b", v02772a50_0, v027729a0_0, v027728f0_0, v02772948_0, v02772aa8_0, v027801c0_0, v027729f8_0, v02780110_0, $time {0 0 0};
+    %end;
+    .thread T_2;
+    .scope S_02772820;
+T_3 ;
+    %delay 20, 0;
+    %load/vec4 v02772aa8_0;
+    %inv;
+    %store/vec4 v02772aa8_0, 0, 1;
+    %jmp T_3;
+    .thread T_3;
+    .scope S_02772820;
+T_4 ;
+    %delay 20, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v02772aa8_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v02780110_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v027729f8_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v027801c0_0, 0, 1;
+    %delay 40, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v027801c0_0, 0, 1;
+    %delay 20, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v027801c0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v027729f8_0, 0, 1;
+    %delay 40, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v02780110_0, 0, 1;
+    %delay 20000, 0;
+    %vpi_call 2 63 "$finish" {0 0 0};
+    %end;
+    .thread T_4;
+    .scope S_0102c260;
+T_5 ;
+    %vpi_call 2 29 "$dumpfile", "characterBitCountFile.vcd" {0 0 0};
+    %vpi_call 2 33 "$dumpvars", 32'sb00000000000000000000000000000001, S_0102c260 {0 0 0};
+    %end;
+    .thread T_5;
 # The file index is used to find the file name in the following table.
-:file_names 3;
+:file_names 4;
     "N/A";
     "<interactive>";
-    "characterBitCount.v";
+    "characterBitCountTop.v";
+    "./characterBitCount.v";

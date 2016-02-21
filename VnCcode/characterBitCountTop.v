@@ -13,7 +13,8 @@ which regulates the SR Clock Control and Character recieved signals.
 module characterBitCountTop;
 	// connect the two modules
 	wire clk, reset, bitStream, enable;
-	wire charRecieved, SRclk;
+	wire [3:0] BIC, BSC;
+	wire charReceived, SRclk;
 	
 	// declare an instance of the module
 	characterBitCount cbc(charReceived, SRclk, BIC, BSC, clk, reset, bitStream, enable);
@@ -36,22 +37,28 @@ endmodule
 
 module Tester (charReceived, SRclk, BIC, BSC, clk, reset, bitStream, enable);
 	input charReceived, SRclk;
-	output [3:0] BIC, BSC;
+	input [3:0] BIC, BSC;
 	output clk, reset, bitStream, enable;
-	reg	[3:0] BIC, BSC;
 	reg clk, reset, bitStream, enable;
 	
 	parameter delay = 20;
 	
 	initial begin 
-		$display("\t\t charReceived SRclk \t clk reset bitStream, enable \t Q \t Time");
-		$monitor("\t\t %b \t %b \t %b", charReceived, SRclk, clk, reset, bitStream, enable, $time);
+		$display("\t\t charReceived SRclk BIC BSC clk reset bitStream enable Time");
+		$monitor("\t\t %b \t %b \t %b", charReceived, SRclk, BIC, BSC, clk, reset, bitStream, enable, $time);
 	end
 	
 	always #delay clk = ~clk;
 	
 	initial begin
+	#delay clk = 1'b0; enable = 1'b0; bitStream = 1'b0; reset = 1'b0;
+	#(delay*2) reset = 1;
+	#delay reset = 0; bitStream = 1'b0;
+	#(delay*2) enable = 1;
 
+
+	#(1000*delay)
+	
 	
 		$finish;
 	end
