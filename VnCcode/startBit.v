@@ -1,7 +1,7 @@
 /*
 Bryan Bednarski
-EE 371 Prof. Peckel Winter 2016
-Project 3: Extending a Mircoprocessor
+EE 371 Prof. Peckol Winter 2016
+Project 3: Extending a Microprocessor
 
 startBit.v
 This verilog module determines when to enable the Bit Sample Counter and 
